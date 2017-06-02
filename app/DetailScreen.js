@@ -13,26 +13,27 @@ import Video from 'react-native-video';
 import styles from './styles.js';
 
 export default class DetailScreen extends Component {
+    constructor(props) {
+        super(props);
+        //this.setState({video:this.props.video});
+        console.log(this.props.navigation.state.params);
+        this.state = {video:this.props.navigation.state.params.video};
+        if(this.state.video){
+            this.navigationOptions = {
+                title:this.state.video.title
+            }
+        }
+    }
+
     static navigationOptions = {
-        title: 'DetailScreen'
+        title: "DetailScreen"
     };
     render() {
         return (
             <Container>
-                <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Header Detail</Title>
-                    </Body>
-                    <Right />
-                </Header>
                 <Content>
-                    <Text>Detail Your main content goes here</Text>
-                    <Video source={{uri: "https://v01.qooqlevideo.com/t/1497645812/SIH1GKB4NLQrpEHj63MQSg/12273/master.m3u8"}}
+                    <Text>{this.state.video.title}</Text>
+                    <Video source={{uri: this.state.video.preview_video_url}}
                            style={styles.nativeVideoControls}
                     />
                 </Content>

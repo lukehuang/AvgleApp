@@ -13,5 +13,8 @@ export default styles = StyleSheet.create({
     nativeVideoControls: {
         //top: 184,
         height: 300
+    },
+    buttonText:{
+        color:'#ffffff'
     }
 });
