@@ -26,7 +26,8 @@ import {
     ListItem,
     Thumbnail,
     Text,
-    Body
+    Body,
+    Spinner
 } from 'native-base';
 import Video from 'react-native-video';
 import styles from './styles.js';
@@ -34,13 +35,14 @@ export default class MainScreen extends Component {
     constructor(props) {
         super(props);
         //this.setState({keyword: "2", searchResult: [], page: 0, showToast: false});
-        this.state = {keyword: "2", searchResult: [], page: 0, showToast: false};
+        this.state = {keyword: "2", searchResult: [], page: 0, showToast: false,showLoading:false};
     }
 
     search = function () {
         let keyword = this.state.keyword;
         let page = this.state.page;
         if (keyword != "") {
+            this.setState({showLoading:true});
             try {
                 fetch("https://api.avgle.com/v1/search/" + keyword + "/" + page)
                     .then((res) => res.json())
@@ -49,12 +51,14 @@ export default class MainScreen extends Component {
                         //let res = JSON.parse(response);
                         console.log(res.response);
                         //this.state.searchResult = res.response.videos;
-                        this.setState({searchResult: res.response.videos});
+                        this.setState({searchResult: res.response.videos,showLoading:false});
                     })
                     .catch((error) => {
                         console.error(error);
+                        this.setState({showLoading:false});
                     });
             } catch (error) {
+                this.setState({showLoading:false});
                 console.error(error);
             }
 
@@ -90,11 +94,14 @@ export default class MainScreen extends Component {
                     <Button primary title="search" onPress={() => this.search() }>
                         <Text>search</Text>
                     </Button>
+                    { this.state.showLoading &&
+                    <Spinner color='blue' />
+                    }
 
                     <List dataArray={this.state.searchResult}
                           renderRow={(item) =>
                             <ListItem>
-                                <Thumbnail square size={80} source={{uri:item.preview_url}} />
+                                <Thumbnail square size={100} source={{uri:item.preview_url}} />
                                 <Body >
                                     <Text>{item.title}</Text>
                                     <Text note>{item.vid}--{item.preview_video_url}</Text>
