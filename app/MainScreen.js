@@ -6,7 +6,8 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    TouchableHighlight
+    TouchableHighlight,
+    WebView
 } from 'react-native';
 import {
     Container,
@@ -35,7 +36,7 @@ export default class MainScreen extends Component {
     constructor(props) {
         super(props);
         //this.setState({keyword: "2", searchResult: [], page: 0, showToast: false});
-        this.state = {keyword: "2", searchResult: [], page: 0, showToast: false,showLoading:false};
+        this.state = {keyword: "三上悠亜", searchResult: [], page: 0, showToast: false,showLoading:false};
     }
 
     search = function () {

@@ -16,5 +16,9 @@ export default styles = StyleSheet.create({
     },
     buttonText:{
         color:'#ffffff'
+    },
+    webView: {
+        backgroundColor: 'rgba(255,255,255,0.8)',
+        height: 350,
     }
 });
