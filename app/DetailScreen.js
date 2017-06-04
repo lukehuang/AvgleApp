@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon,Text,Spinner} from 'native-base';
 import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
 import styles from './styles.js';
 import cheerio from 'cheerio-without-node-native';
 
@@ -85,13 +86,20 @@ export default class DetailScreen extends Component {
         return (
             <Container>
                 <Content>
+                    {!this.state.fullVideoUrl &&
                     <Text>{this.state.video.title}</Text>
+                    }
+                    
                     { this.state.showLoading &&
                     <Spinner color='blue' />
                     }
                     { this.state.fullVideoUrl &&
-                    <Video source={{uri: this.state.fullVideoUrl}}
-                           style={styles.nativeVideoControls}
+                    <VideoPlayer
+                        source={{uri: this.state.fullVideoUrl}}
+                        style={styles.nativeVideoControls}
+                        videoStyle={styles.nativeVideoControls}
+                        controlTimeout={ 15000 }
+                        title = {this.state.video.title}
                     />
                     }
                 </Content>
