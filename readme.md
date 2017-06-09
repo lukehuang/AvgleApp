@@ -1,5 +1,7 @@
 api doc
 https://avgle.github.io/doc/
+only for study and learn react-native
+please do not spread
 
 offline pack
 react-native bundle --entry-file index.ios.js --platform ios --dev false --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle
