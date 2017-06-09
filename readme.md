@@ -1,3 +1,6 @@
+api doc
+https://avgle.github.io/doc/
+
 offline pack
 react-native bundle --entry-file index.ios.js --platform ios --dev false --bundle-output ./ios/bundle/index.ios.jsbundle --assets-dest ./ios/bundle
 
